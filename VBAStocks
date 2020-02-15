@@ -1,1 +1,100 @@
-
+'Create a function in order to execute the block of code that is inside of it
+Sub MultipleYearStockData()
+    'Input the appropriate/desired headers into the worksheet
+    Range("I1").Value = "Ticker"
+    Range("J1").Value = "Yearly Change"
+    Range("K1").Value = "Percent Change"
+    Range("L1").Value = "Total Stock Volume"
+    Range("O2").Value = "Greatest % Increase"
+    Range("O3").Value = "Greatest % Decrease"
+    Range("O4").Value = "Greatest Total Volume"
+    Range("P1").Value = "Ticker"
+    Range("Q1").Value = "Value"
+    'Define all of the variables that are needed for holding the necessary values
+    Dim ticker, greatest_percentage_increase_ticker, greatest_percentage_decrease_ticker, greatest_total_volume_ticker As String
+    Dim opening_price, closing_price, yearly_change, percentage_change, greatest_percentage_increase, greatest_percentage_decrease As Double
+    'Initialize to zero
+    opening_price = 0
+    closing_price = 0
+    yearly_change = 0
+    percentage_change = 0
+    Dim total_stock_volume, greatest_total_volume As LongLong
+    total_stock_volume = 0
+    'Keep track of the location for each ticker in the information section (with its row)
+    Dim information_row As Integer
+    'We start at row 2 because of the headers that are in place at row 1 of these columns
+    information_row = 2
+    'Loop through all of the ticker information (choosing the longest of the three worksheets)
+    For r = 2 To 797711
+    'Check if we are in the same ticker
+        If Cells(r + 1, 1).Value <> Cells(r, 1).Value Then
+            'Set the ticker, closing price, yearly change, and percentage change values
+            ticker = Cells(r, 1).Value
+            closing_price = Cells(r, 6).Value
+            yearly_change = closing_price - opening_price
+            'Correct for the divide by zero error
+            If opening_price = 0 Then
+                percentage_change = yearly_change
+            ElseIf opening_price <> 0 Then
+                percentage_change = yearly_change / opening_price
+            End If
+            'Add to the total stock volume
+            total_stock_volume = total_stock_volume + Cells(r, 7).Value
+            'Print (in order) the unique tickers, their yearly change, their percentage change, and their total stock volume to the information section of the worksheet
+            Range("I" & information_row).Value = ticker
+            Range("J" & information_row).Value = yearly_change
+            'Apply conditional formatting to the yearly change values
+            If yearly_change > 0 Then
+                Range("J" & information_row).Interior.ColorIndex = 4
+            ElseIf yearly_change < 0 Then
+                Range("J" & information_row).Interior.ColorIndex = 3
+            End If
+            'Format the percentage change values to display correctly
+            Range("K" & information_row).Value = percentage_change
+            Range("K" & information_row).NumberFormat = "0.00%"
+            Range("L" & information_row).Value = total_stock_volume
+            'Add one to go to the next row of the information section
+            information_row = information_row + 1
+            'Reset the totals
+            closing_price = 0
+            yearly_change = 0
+            percentage_change = 0
+            total_stock_volume = 0
+        'If the cell immediately following the row is the same ticker...
+        ElseIf Cells(r, 2).Value = "20160101" Or Cells(r, 2).Value = "20150101" Or Cells(r, 2).Value = "20140101" Then
+            opening_price = Cells(r, 3).Value
+            total_stock_volume = total_stock_volume + Cells(r, 7).Value
+        End If
+    Next r
+    'We find the maximum and minimum value to Column K to find the greatest percentage increase for all of the tickers in the worksheet, and print it
+    greatest_percentage_increase = Application.WorksheetFunction.Max(Range("K:K"))
+    Range("Q2").Value = greatest_percentage_increase
+    greatest_percentage_decrease = Application.WorksheetFunction.Min(Range("K:K"))
+    Range("Q3").Value = greatest_percentage_decrease
+    'Change the number formatting to a percentage with two decimal places
+    Range("Q2").NumberFormat = "0.00%"
+    Range("Q3").NumberFormat = "0.00%"
+    'Do the same for the greatest total volume
+    greatest_total_volume = Application.WorksheetFunction.Max(Range("L:L"))
+    Range("Q4").Value = greatest_total_volume
+    'Find the associated ticker value of the percentage maximums and minimums with a for loop and an if statement
+    For r = 2 To 3169
+        If Cells(r, 11).Value = greatest_percentage_increase Then
+            greatest_percentage_increase_ticker = Cells(r, 9).Value
+        ElseIf Cells(r, 11).Value = greatest_percentage_decrease Then
+            greatest_percentage_decrease_ticker = Cells(r, 9).Value
+        End If
+    Next r
+    Range("P2").Value = greatest_percentage_increase_ticker
+    Range("P3").Value = greatest_percentage_decrease_ticker
+    'Do a similar procedure for the MAX volume
+    For r = 2 To 3169
+        If Cells(r, 12).Value = greatest_total_volume Then
+            greatest_total_volume_ticker = Cells(r, 9).Value
+        End If
+    Next r
+    Range("P4").Value = greatest_total_volume_ticker
+    'Finally, "AutoFit" the columns with data for presentation purposes
+    Range("I:L").Columns.AutoFit
+    Range("O:Q").Columns.AutoFit
+End Sub
