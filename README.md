@@ -1,9 +1,5 @@
 # VBA-challenge
-Using VBA scripting to analyze stock market data...
-
-Loops through all of the stocks for one year and creates the information table on the right side of the sheet...
-
-The script acts the same on each sheet.
+Using VBA scripting to analyze stock market data... Loops through all of the stocks for one year and creates the information table on the right side of the sheet... The script acts the same on each sheet.
 
 
 Objectives of Unit 1 - Excel (Week 1 of the Boot Camp):
