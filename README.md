@@ -1,7 +1,11 @@
 # VBA-challenge
-*Using VBA scripting to analyze stock market data... Loops through all of the stocks for one year and creates the information table on the right side of the sheet... The script acts the same on each sheet.*  
+*Using VBA scripting to analyze stock market data...  
+Loops through all of the stocks for one year, uses conditional formatting on positive (green) and negative (red) changes, and creates the information table on the right side of the sheet...  
+The script acts the same on each sheet.*  
 
 ![Screen Shot of 2016](https://raw.githubusercontent.com/ognjenstrbanovic/VBA-challenge/master/VBAStocks/VBA-Challenge%20-%202016%20Screen%20Shot.png)  
+
+*"The joy of VBA is to take the tediousness out of repetitive task and run over and over again with a click of the button."*  
 
 **Objectives of Unit 1 - Excel (Week 1 of the RU Data Boot Camp):**
 - Feel fully proficient in basic Excel navigation and functionality
