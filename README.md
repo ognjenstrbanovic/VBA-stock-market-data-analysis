@@ -1,7 +1,7 @@
 # VBA-challenge
 ![Stocks](https://github.com/RutgersCodingBootcamp/RU-JER-DATA-PT-01-2020/blob/master/02-Homework/02-VBA-Scripting/Instructions/Images/stockmarket.jpg?raw=true)  
 
-*Using VBA scripting to analyze stock market data...  
+*Using VBA scripting to analyze stock market data... 📈  
 Loops through all of the stocks for one year, uses conditional formatting on positive (green) and negative (red) changes in price, takes the total volume, and creates the information table on the right side of the sheet (a bonus exercise)...  
 The script acts the same on each sheet.*  
 
