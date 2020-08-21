@@ -33,3 +33,5 @@ The script acts the same on each sheet.*
 - Refine fundamental coding skills (syntax recollection, pattern recognition, problem decomposition, and debugging).
 - Be comfortable formatting spreadsheets using VBA code.
 - Understand how to loop through a table using VBA code and check for changes in values.
+
+![Wolf of Wall Street Gif](https://github.com/ognjenstrbanovic/VBA-stock-market-data-analysis/blob/master/wolf-of-wall-street.gif)
