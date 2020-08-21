@@ -1,4 +1,4 @@
-# VBA-challenge
+# VBA-stock-market-data-analysis
 ![Stocks](https://github.com/RutgersCodingBootcamp/RU-JER-DATA-PT-01-2020/blob/master/02-Homework/02-VBA-Scripting/Instructions/Images/stockmarket.jpg?raw=true)  
 
 *Using VBA scripting to analyze stock market data... 📈  
